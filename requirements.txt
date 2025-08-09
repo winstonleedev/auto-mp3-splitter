@@ -1,0 +1,10 @@
+# FFmpeg-based MP3 splitter requirements
+# No Python packages required - uses FFmpeg directly
+# 
+# Required system dependency:
+# - FFmpeg (https://ffmpeg.org/download.html)
+#
+# Installation:
+# Windows: Download from https://ffmpeg.org/download.html and add to PATH
+# macOS: brew install ffmpeg  
+# Linux: sudo apt-get install ffmpeg
