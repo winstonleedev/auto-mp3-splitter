@@ -24,10 +24,11 @@ This tool splits large MP3 files into smaller segments based on silence detectio
 
 ## Usage
 
-### Install required dependencies and run (Windows only):
+### One-click installation and run (Windows):
 ```bash
 install_and_run.bat "your_file.mp3"
 ```
+*Automatically installs FFmpeg if needed and runs the splitter*
 
 
 ### Command Line (Recommended):
@@ -89,15 +90,13 @@ Files created: 46 tracks in 'splits' directory
 ============================================================
 ```
 
-## Advantages Over pydub Approach
+## Technical Advantages
 
-| Feature | FFmpeg Approach | pydub Approach |
-|---------|----------------|----------------|
-| File size limit | None | ~4GB (WAV conversion limit) |
-| Memory usage | Minimal | Loads entire file |
-| Processing speed | Fast | Slower for large files |
-| Quality | Lossless copy | May require re-encoding |
-| Dependencies | FFmpeg only | Python + pydub + FFmpeg |
+- **No file size limitations** - Handles files larger than 4GB efficiently
+- **Minimal memory usage** - Processes files without loading into RAM
+- **Fast processing** - Native FFmpeg performance
+- **Lossless quality** - Uses copy mode (no re-encoding)
+- **Simple dependencies** - Only requires FFmpeg (no Python audio libraries)
 
 ## Troubleshooting
 
