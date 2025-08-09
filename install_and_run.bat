@@ -49,7 +49,7 @@ echo MP3 Splitter Configuration
 echo ================================================
 echo.
 
-REM Get input file
+REM Get first MP3 file in current directory
 set "input_file="
 if "%~1"=="" (
     echo Available MP3 files in current directory:
@@ -57,25 +57,21 @@ if "%~1"=="" (
     dir /b *.mp3 2>nul
     echo.
     
-    REM Get first MP3 file as default
+    REM Get first MP3 file automatically
     for %%f in (*.mp3) do (
-        set "first_mp3=%%f"
+        set "input_file=%%f"
         goto :found_first
     )
-    set "first_mp3="
     :found_first
     
-    if "%first_mp3%"=="" (
+    if "%input_file%"=="" (
         echo No MP3 files found in current directory!
         pause
         exit /b 1
     )
     
-    echo Default file: %first_mp3%
+    echo Using first MP3 file found: %input_file%
     echo.
-    set /p input_file="Enter MP3 filename (or press Enter to use default): "
-    
-    if "%input_file%"=="" set "input_file=%first_mp3%"
 ) else (
     set "input_file=%~1"
     echo Using provided file: %input_file%
@@ -118,12 +114,8 @@ pause >nul
 echo.
 echo Running MP3 splitter...
 
-REM Build command based on whether input file was specified
-if "%input_file%"=="" (
-    python split_large_mp3.py
-) else (
-    python split_ost.py "%input_file%" -o "%output_dir%" -t %threshold% -d %duration%
-)
+REM Run the splitter with the detected MP3 file
+python split_ost.py "%input_file%" -o "%output_dir%" -t %threshold% -d %duration%
 
 echo.
 echo Done! Check the '%output_dir%' folder for the split tracks.
